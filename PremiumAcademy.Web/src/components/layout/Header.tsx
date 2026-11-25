@@ -25,11 +25,14 @@ export function Wordmark() {
           <linearGradient id="lm-au" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#F6DE9E" /><stop offset="1" stopColor="#C8962E" /></linearGradient>
         </defs>
         <rect x="1" y="1" width="38" height="38" rx="11" fill="url(#lm-bg)" stroke="url(#lm-au)" strokeWidth="1.2" />
-        {/* É monogram: three bars and a rising accent */}
-        <g fill="none" stroke="url(#lm-au)" strokeWidth="3.2" strokeLinecap="round">
-          <path d="M13 16h14M13 23h10M13 30h14" />
-          <path d="M21 10.5l6-4" />
+        {/* Mushaf: an open book on its stand */}
+        <g fill="none" stroke="url(#lm-au)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M20 14.5c-3.2-2.6-8-2.9-11.5-1.3v13.6c3.5-1.6 8.3-1.3 11.5 1.3 3.2-2.6 8-2.9 11.5-1.3V13.2c-3.5-1.6-8.3-1.3-11.5 1.3z" fill="rgb(246 222 158 / 0.14)" />
+          <path d="M20 14.5v13.6" />
+          <path d="M12 17.2c1.8-.5 3.6-.4 5.2.2M12 21c1.8-.5 3.6-.4 5.2.2M22.8 17.4c1.6-.6 3.4-.7 5.2-.2M22.8 21.2c1.6-.6 3.4-.7 5.2-.2" strokeWidth="1.3" />
+          <path d="M12.5 33l7.5-4.9 7.5 4.9" />
         </g>
+        <path d="M20 5.2l1.9 1.9-1.9 1.9-1.9-1.9z" fill="url(#lm-au)" />
       </svg>
       <span lang="en" className="text-[1.15rem] font-bold tracking-[-0.02em]" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
         Élan <span className="font-medium opacity-70">Academy</span>
