@@ -1,10 +1,7 @@
 import { setRequestLocale } from 'next-intl/server';
 import { Hero } from '@/components/home/Hero';
-import { Intro } from '@/components/home/Intro';
-import { Philosophy } from '@/components/home/Philosophy';
-import { CoursesRail } from '@/components/home/CoursesRail';
-import { Why, TutorTeaser, Method, How, Faq, Cta } from '@/components/home/Sections';
-import { Fees } from '@/components/home/Fees';
+import { Marquee, Stats, Courses, Why, Journey, Tutor, Testimonials, Faq, Cta } from '@/components/home/Sections';
+import { Pricing } from '@/components/home/Pricing';
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -12,15 +9,14 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   return (
     <>
       <Hero />
-      <Intro />
-      <Philosophy />
-      <CoursesRail />
+      <Marquee />
+      <Stats />
+      <Courses />
       <Why />
-      <TutorTeaser />
-      <Method />
-      <How />
-      <Fees />
-      {/* Testimonials are intentionally absent: the section is added only when genuine ones are supplied. */}
+      <Journey />
+      <Tutor />
+      <Pricing />
+      <Testimonials />
       <Faq />
       <Cta />
     </>

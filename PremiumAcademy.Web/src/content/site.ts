@@ -9,13 +9,13 @@ export const contact = {
 
 export type CourseSlug = 'foundation' | 'tajweed' | 'hifz' | 'arabic' | 'islamic-studies';
 
-/** `fold` picks the constructed emblem for each subject (4-, 6-, 8-, 10- or 12-fold). */
-export const courses: Array<{ slug: CourseSlug; fold: number; step: number }> = [
-  { slug: 'foundation', fold: 4, step: 1 },
-  { slug: 'tajweed', fold: 6, step: 1 },
-  { slug: 'hifz', fold: 8, step: 3 },
-  { slug: 'arabic', fold: 10, step: 3 },
-  { slug: 'islamic-studies', fold: 12, step: 5 },
+/** Each course has its own colour pair for its cover; the artwork lives in components/geometry/CourseEmblem. */
+export const courses: Array<{ slug: CourseSlug; from: string; to: string; glow: string }> = [
+  { slug: 'foundation', from: '#12805F', to: '#06281F', glow: '#3DD9A4' },
+  { slug: 'tajweed', from: '#B4472A', to: '#33110A', glow: '#FF9A6B' },
+  { slug: 'hifz', from: '#B58419', to: '#33240A', glow: '#FFD778' },
+  { slug: 'arabic', from: '#176C8C', to: '#071F2A', glow: '#6FD3F5' },
+  { slug: 'islamic-studies', from: '#5B43A0', to: '#150F2B', glow: '#B9A4FF' },
 ];
 
 export const durations = [30, 45, 60] as const;

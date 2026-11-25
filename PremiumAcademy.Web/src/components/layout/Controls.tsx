@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useTheme } from 'next-themes';
-import { Moon, Sun } from 'lucide-react';
+import { Languages, Moon, Sun } from 'lucide-react';
 import { usePathname, useRouter } from '@/i18n/navigation';
 import { LOCALE_STORAGE_KEY } from '@/i18n/routing';
 
@@ -24,9 +24,10 @@ export function LocaleSwitch() {
         } catch {}
         router.replace(pathname, { locale: next });
       }}
-      className="min-h-[44px] px-2 text-sm underline-offset-[6px] hover:underline"
+      className="flex h-11 items-center gap-2 rounded-full px-3 text-[0.88rem] font-medium hover:bg-white/10"
     >
-      {next === 'ar' ? t('toArabic') : t('toEnglish')}
+      <Languages size={17} aria-hidden="true" />
+      <span>{next === 'ar' ? t('toArabic') : t('toEnglish')}</span>
     </button>
   );
 }
@@ -38,15 +39,8 @@ export function ThemeToggle() {
   useEffect(() => setMounted(true), []);
   const dark = mounted && resolvedTheme === 'dark';
   return (
-    <button
-      type="button"
-      aria-label={t('switchTheme')}
-      aria-pressed={dark}
-      onClick={() => setTheme(dark ? 'light' : 'dark')}
-      className="flex min-h-[44px] min-w-[44px] items-center justify-center gap-2 text-sm"
-    >
-      {dark ? <Sun size={18} strokeWidth={1.25} aria-hidden="true" /> : <Moon size={18} strokeWidth={1.25} aria-hidden="true" />}
-      <span className="hidden xl:inline">{dark ? t('themeLight') : t('themeDark')}</span>
+    <button type="button" aria-label={t('switchTheme')} aria-pressed={dark} onClick={() => setTheme(dark ? 'light' : 'dark')} className="flex h-11 w-11 items-center justify-center rounded-full hover:bg-white/10">
+      {dark ? <Sun size={18} aria-hidden="true" /> : <Moon size={18} aria-hidden="true" />}
     </button>
   );
 }

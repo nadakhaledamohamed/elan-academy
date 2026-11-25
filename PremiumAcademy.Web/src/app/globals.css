@@ -1,12 +1,10 @@
-@import '@fontsource/cormorant-garamond/300.css';
-@import '@fontsource/cormorant-garamond/300-italic.css';
-@import '@fontsource/cormorant-garamond/400.css';
-@import '@fontsource/cormorant-garamond/400-italic.css';
-@import '@fontsource/josefin-sans/300.css';
-@import '@fontsource/josefin-sans/400.css';
-@import '@fontsource/josefin-sans/600.css';
-@import '@fontsource/reem-kufi/arabic-400.css';
-@import '@fontsource/reem-kufi/arabic-600.css';
+@import '@fontsource/plus-jakarta-sans/400.css';
+@import '@fontsource/plus-jakarta-sans/500.css';
+@import '@fontsource/plus-jakarta-sans/600.css';
+@import '@fontsource/plus-jakarta-sans/700.css';
+@import '@fontsource/plus-jakarta-sans/800.css';
+@import '@fontsource/alexandria/arabic-500.css';
+@import '@fontsource/alexandria/arabic-700.css';
 @import '@fontsource/ibm-plex-sans-arabic/400.css';
 @import '@fontsource/ibm-plex-sans-arabic/500.css';
 
@@ -14,88 +12,137 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Design tokens. Two designed themes, not an inversion:
-   light = plaster wall by day, dark = courtyard at night. */
+/* ------------------------------------------------------------------
+   Design tokens. Emerald, gold, ivory and charcoal.
+   Light = ivory page with deep-emerald feature panels.
+   Dark  = emerald-black page with glass surfaces.
+------------------------------------------------------------------- */
 :root {
-  --bg: 245 240 230;
-  --surface: 236 229 215;
-  --ink: 27 33 31;
-  --muted: 74 83 79;
-  --primary: 11 67 56;
-  --on-primary: 245 240 230;
-  --accent: 11 67 56;
-  --brass: 166 124 46;
-  --brass-hi: #f0dda6;
-  --brass-lo: #a67c2e;
-  --clay: 168 74 50;
-  --line: 211 202 184;
-  --arch: 11 67 56;
-  --on-arch: 240 226 189;
-  --font-display: 'Cormorant Garamond', 'Reem Kufi', Georgia, serif;
-  --font-body: 'Josefin Sans', 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  --bg: 250 247 240;
+  --bg2: 242 236 222;
+  --card: 255 255 255;
+  --card-a: 0.78;
+  --ink: 9 30 24;
+  --muted: 78 96 89;
+  --line: 9 30 24;
+  --line-a: 0.1;
+  --emerald: 8 74 58;
+  --accent: 10 122 94;
+  --gold: 158 112 20;
+  --gold-hi: #f6de9e;
+  --gold-mid: #d9a93f;
+  --gold-lo: #b8862b;
+  --shadow: 0 24px 60px -28px rgb(9 30 24 / 0.28);
+  --font-display: 'Plus Jakarta Sans', 'Alexandria', system-ui, sans-serif;
+  --font-body: 'Plus Jakarta Sans', 'IBM Plex Sans Arabic', system-ui, sans-serif;
 }
-[data-theme='dark'] {
-  --bg: 11 18 16;
-  --surface: 16 30 26;
-  --ink: 237 232 220;
-  --muted: 169 167 155;
-  --primary: 221 187 110;
-  --on-primary: 11 18 16;
-  --accent: 73 184 157;
-  --brass: 221 187 110;
-  --brass-hi: #f3e2b4;
-  --brass-lo: #b8903e;
-  --clay: 224 122 95;
-  --line: 38 48 45;
-  --arch: 16 35 30;
-  --on-arch: 240 226 189;
+[data-theme='dark'], .on-emerald {
+  --bg: 4 14 11;
+  --bg2: 7 24 19;
+  --card: 255 255 255;
+  --card-a: 0.045;
+  --ink: 246 242 231;
+  --muted: 163 180 172;
+  --line: 255 255 255;
+  --line-a: 0.1;
+  --emerald: 12 92 72;
+  --accent: 70 208 162;
+  --gold: 232 190 98;
+  --shadow: 0 30px 70px -30px rgb(0 0 0 / 0.7);
 }
-/* Arabic gets its own type voice: Kufic display, Plex body. */
 [lang='ar'] {
-  --font-display: 'Reem Kufi', 'Cormorant Garamond', serif;
-  --font-body: 'IBM Plex Sans Arabic', 'Josefin Sans', system-ui, sans-serif;
+  --font-display: 'Alexandria', 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-body: 'IBM Plex Sans Arabic', 'Plus Jakarta Sans', system-ui, sans-serif;
 }
 
 @layer base {
   html { scroll-behavior: smooth; }
-  body {
-    @apply bg-bg font-sans text-ink antialiased;
-    transition: background-color 0.5s ease, color 0.5s ease;
-  }
-  ::selection { background: rgb(var(--brass) / 0.35); }
-  :focus-visible { outline: 2px solid rgb(var(--brass)); outline-offset: 3px; }
-  h1, h2, h3 { @apply font-display font-light; }
-  /* Latin display type is tight and light; Arabic must never be letter-spaced or italicised. */
-  [lang='ar'] h1, [lang='ar'] h2, [lang='ar'] h3 { font-weight: 400; letter-spacing: 0 !important; line-height: 1.35 !important; }
-  [lang='ar'] em, [lang='ar'] .link-quiet { font-style: normal; }
-  [lang='ar'] .link-quiet { font-family: var(--font-body); font-size: 1.05rem; }
+  body { @apply bg-bg font-sans text-ink antialiased; transition: background-color 0.5s ease, color 0.5s ease; }
+  ::selection { background: rgb(var(--gold) / 0.35); }
+  :focus-visible { outline: 2px solid rgb(var(--gold)); outline-offset: 3px; border-radius: 6px; }
+  h1, h2, h3 { @apply font-display; }
   [lang='ar'] * { letter-spacing: 0 !important; }
+  [lang='ar'] h1, [lang='ar'] h2 { line-height: 1.45 !important; }
+  em { font-style: normal; }
 }
 
 @layer components {
-  /* While the full-screen menu is open the header sits on the arch colour, so its text tokens flip. */
-  .menu-open { --ink: var(--on-arch); --accent: var(--on-arch); --primary: var(--on-arch); --on-primary: var(--arch); }
-  .label { @apply text-xs uppercase tracking-[0.22em] text-muted; }
-  .container-page { @apply mx-auto w-full max-w-page px-6 md:px-12; }
-  .rule { @apply h-px w-full bg-line; }
-  .display-xl { @apply text-[clamp(3.25rem,9vw,7.5rem)] leading-[0.92] tracking-[-0.02em]; }
-  .display-lg { @apply text-[clamp(2.5rem,6vw,5rem)] leading-[0.98] tracking-[-0.02em]; }
-  .display-md { @apply text-[clamp(1.9rem,3.6vw,3rem)] leading-[1.05] tracking-[-0.01em]; }
-  .btn-primary {
-    @apply inline-flex min-h-[48px] items-center justify-center bg-primary px-8 pb-[13px] pt-4 text-[13px] uppercase tracking-[0.2em] text-on-primary;
-    box-shadow: 0 0 0 4px rgb(var(--bg)), 0 0 0 5px rgb(var(--brass));
-    transition: box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  .container-page { @apply mx-auto w-full max-w-page px-5 md:px-8; }
+  .section { @apply py-20 md:py-28; }
+  .on-emerald { color: rgb(var(--ink)); }
+
+  /* Type scale: one job per size. */
+  .h-hero { @apply text-[clamp(2.5rem,5.4vw,4.4rem)] font-extrabold leading-[1.04] tracking-[-0.035em]; }
+  .h-section { @apply text-[clamp(1.8rem,3.2vw,2.75rem)] font-bold leading-[1.12] tracking-[-0.03em]; }
+  .h-card { @apply text-[1.2rem] font-semibold leading-snug tracking-[-0.01em]; }
+  .lead { @apply text-[1.06rem] leading-[1.75] text-muted; }
+  .eyebrow { @apply inline-flex items-center gap-2 text-[0.76rem] font-semibold uppercase tracking-[0.16em] text-gold; }
+  .eyebrow::before { content: ''; @apply h-1.5 w-1.5 rounded-full bg-gold; }
+  .gold-text { background: linear-gradient(120deg, var(--gold-hi), var(--gold-mid) 45%, var(--gold-lo)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  :root:not([data-theme='dark']) :not(.on-emerald) > .gold-text.on-light { background: linear-gradient(120deg, #b8862b, #8a6114); -webkit-background-clip: text; background-clip: text; }
+
+  /* Surfaces */
+  .glass {
+    background: rgb(var(--card) / var(--card-a));
+    border: 1px solid rgb(var(--line) / var(--line-a));
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    backdrop-filter: blur(18px) saturate(140%);
+    box-shadow: var(--shadow);
   }
-  .btn-primary:hover { box-shadow: 0 0 0 7px rgb(var(--bg)), 0 0 0 8px rgb(var(--brass)); }
-  .link-quiet {
-    @apply font-display text-xl italic underline decoration-brass decoration-1 underline-offset-[6px];
-    transition: text-underline-offset 0.3s ease;
+  .hairline { border-color: rgb(var(--line) / var(--line-a)); }
+  .emerald-panel {
+    background:
+      radial-gradient(900px 500px at 85% -10%, rgb(20 150 115 / 0.45), transparent 60%),
+      radial-gradient(700px 500px at 0% 110%, rgb(217 169 63 / 0.16), transparent 60%),
+      linear-gradient(160deg, #0a3a2e 0%, #062019 45%, #040e0b 100%);
   }
-  .link-quiet:hover { text-underline-offset: 10px; }
-  .placeholder { @apply text-muted; }
+  .grid-lines {
+    background-image: linear-gradient(rgb(255 255 255 / 0.05) 1px, transparent 1px), linear-gradient(90deg, rgb(255 255 255 / 0.05) 1px, transparent 1px);
+    background-size: 56px 56px;
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 75%);
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 75%);
+  }
+
+  /* Buttons */
+  .btn { @apply relative inline-flex min-h-[50px] items-center justify-center gap-2 overflow-hidden rounded-full px-7 text-[0.95rem] font-semibold; transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease; }
+  .btn:active { transform: scale(0.97); }
+  .btn-gold { color: #1b1403; background: linear-gradient(135deg, var(--gold-hi), var(--gold-mid) 55%, var(--gold-lo)); box-shadow: 0 10px 30px -10px rgb(217 169 63 / 0.7), inset 0 1px 0 rgb(255 255 255 / 0.5); }
+  .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 18px 40px -12px rgb(217 169 63 / 0.85), inset 0 1px 0 rgb(255 255 255 / 0.5); }
+  .btn-gold::after { content: ''; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 30%, rgb(255 255 255 / 0.55) 50%, transparent 70%); transform: translateX(-120%); transition: transform 0.8s ease; }
+  .btn-gold:hover::after { transform: translateX(120%); }
+  .btn-ghost { @apply glass text-ink; box-shadow: none; }
+  .btn-ghost:hover { transform: translateY(-2px); border-color: rgb(var(--gold) / 0.6); }
+
+  /* Spotlight card: a soft light follows the pointer (set by JS through --mx / --my). */
+  .spot { position: relative; overflow: hidden; }
+  .spot::before { content: ''; position: absolute; inset: 0; opacity: 0; transition: opacity 0.4s ease; pointer-events: none; background: radial-gradient(380px circle at var(--mx, 50%) var(--my, 50%), rgb(var(--gold) / 0.16), transparent 60%); }
+  .spot:hover::before { opacity: 1; }
 }
+
+/* ---------- Continuous CSS motion ---------- */
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes marquee { to { transform: translateX(-50%); } }
+@keyframes pulse-bar { 0%, 100% { transform: scaleY(0.35); } 50% { transform: scaleY(1); } }
+@keyframes breathe { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+@keyframes glow { 0%, 100% { opacity: 0.55; transform: scale(1); } 50% { opacity: 0.95; transform: scale(1.12); } }
+@keyframes ping { 0% { transform: scale(1); opacity: 0.8; } 100% { transform: scale(2.4); opacity: 0; } }
+.spin-slow, .spin-rev, .spin-mid { transform-box: fill-box; transform-origin: center; }
+.spin-slow { animation: spin 80s linear infinite; }
+.spin-mid { animation: spin 40s linear infinite; }
+.spin-rev { animation: spin 56s linear infinite reverse; }
+.marquee { animation: marquee 36s linear infinite; }
+.float { animation: float 7s ease-in-out infinite; }
+.float-2 { animation: float 9s ease-in-out -3s infinite; }
+.breathe { animation: breathe 3.2s ease-in-out infinite; }
+.glow { animation: glow 7s ease-in-out infinite; }
+.bar { transform-box: fill-box; transform-origin: center; animation: pulse-bar 1.8s ease-in-out infinite; }
+.ping::after { content: ''; position: absolute; inset: 0; border-radius: 999px; background: currentColor; animation: ping 1.8s ease-out infinite; }
+.group:hover .bar { animation-duration: 0.7s; }
+.group:hover .spin-mid { animation-duration: 8s; }
+.group:hover .spin-rev { animation-duration: 10s; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; }
 }

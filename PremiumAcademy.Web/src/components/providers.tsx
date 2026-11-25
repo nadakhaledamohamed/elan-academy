@@ -6,7 +6,7 @@ import type { ReactNode } from 'react';
 
 export function Providers({ children }: { children: ReactNode }) {
   return (
-    <ThemeProvider attribute="data-theme" defaultTheme="system" enableSystem storageKey="elan-theme">
+    <ThemeProvider attribute="data-theme" defaultTheme="dark" enableSystem={false} storageKey="elan-theme">
       <MotionConfig reducedMotion="user">{children}</MotionConfig>
     </ThemeProvider>
   );

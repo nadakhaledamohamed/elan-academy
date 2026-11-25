@@ -22,24 +22,47 @@
     "skip": "Skip to content"
   },
   "hero": {
-    "eyebrow": "Private tuition, online",
-    "title": "Knowledge, constructed with <em>élan.</em>",
-    "body": "One-to-one lessons in Quran, Arabic and Islamic studies, taught live by one dedicated tutor and built around each student.",
+    "badge": "Free trial lesson · One-to-one · Live online",
+    "title": "Quran and Arabic, taught with <em>precision and élan.</em>",
+    "body": "Private online lessons with one dedicated tutor. A plan built around each student, from the first letter to confident recitation.",
     "primary": "Book a free trial",
     "secondary": "Explore courses",
-    "counterpart": "المعرفة تُبنى\nبثقةٍ وإتقان",
     "facts": [
-      "One-to-one, live online",
-      "Free trial lesson first",
-      "Scheduled in your time zone"
-    ]
+      "No payment for the trial",
+      "Lessons in your time zone",
+      "Children and adults"
+    ],
+    "card1t": "Free trial",
+    "card1d": "A full first lesson, no payment",
+    "card2t": "1 : 1",
+    "card2d": "Live with your tutor",
+    "scroll": "Scroll",
+    "eyebrow": "Free trial lesson · One-to-one · Live online"
   },
   "intro": {
     "label": "The Academy",
     "title": "A small academy, by design.",
     "p1": "Élan Academy is one tutor and her students. There is no rotating staff and no crowded classroom: the person who meets you in the trial lesson is the person who teaches every lesson after it.",
     "p2": "That scale is the point. It means a plan drawn for one student, progress that is noticed week by week, and a parent who always knows who to ask.",
-    "link": "About the academy"
+    "link": "About the academy",
+    "stats": [
+      {
+        "n": "1",
+        "l": "dedicated tutor"
+      },
+      {
+        "n": "5",
+        "l": "courses"
+      },
+      {
+        "n": "1–5",
+        "l": "lessons a week"
+      },
+      {
+        "n": "30–60",
+        "l": "minutes a lesson"
+      }
+    ]
   },
   "philosophy": {
     "label": "Philosophy",
@@ -184,7 +207,9 @@
     "minutes": "{count} min",
     "length": "Lesson length",
     "choose": "Choose {price}, {perWeek} a week, {minutes} minutes",
-    "draft": "Provisional prices, to be confirmed before launch."
+    "draft": "Provisional prices, to be confirmed before launch.",
+    "cols": "Lessons a week",
+    "hint": "Each price links to booking with that plan selected."
   },
   "faq": {
     "label": "Questions",
@@ -237,5 +262,80 @@
     "title": "This page is next in the build.",
     "body": "The homepage shows the approved design. This page will follow in the same style.",
     "back": "Back to home"
+  },
+  "stats": {
+    "items": [
+      {
+        "n": 5,
+        "s": "",
+        "l": "Courses, from first letters to memorisation"
+      },
+      {
+        "n": 1,
+        "s": " : 1",
+        "l": "Every lesson is private and live"
+      },
+      {
+        "n": 5,
+        "s": "×",
+        "l": "Up to five lessons a week"
+      },
+      {
+        "n": 60,
+        "s": " min",
+        "l": "Lessons of 30, 45 or 60 minutes"
+      }
+    ]
+  },
+  "outcomes": {
+    "title": "You will be able to",
+    "foundation": [
+      "Recognise and pronounce every Arabic letter",
+      "Read joined words with short and long vowels",
+      "Begin reading short passages of the Quran"
+    ],
+    "tajweed": [
+      "Pronounce each letter from its correct point",
+      "Apply the main rules of recitation as you read",
+      "Recite with steady rhythm and confidence"
+    ],
+    "hifz": [
+      "Follow a personal memorisation schedule",
+      "Retain what you memorise through planned revision",
+      "Recite memorised portions accurately"
+    ],
+    "arabic": [
+      "Read and write Arabic with understanding",
+      "Hold everyday conversations",
+      "Understand common Quranic vocabulary"
+    ],
+    "islamic-studies": [
+      "Understand the foundations of belief and worship",
+      "Know the key events of the prophetic biography",
+      "Apply good manners in daily life"
+    ]
+  },
+  "testimonials": {
+    "label": "Testimonials",
+    "title": "What families say.",
+    "note": "Awaiting real testimonials",
+    "slot": "A genuine testimonial from a student or parent will appear here once supplied. Nothing in this section is invented.",
+    "who": "[Student or parent name]",
+    "sub": "[Course · Country]"
+  },
+  "trust": {
+    "items": [
+      "Secure PayPal checkout",
+      "Free trial before any payment",
+      "One tutor, every lesson",
+      "Reply by email or WhatsApp"
+    ]
+  },
+  "feesx": {
+    "cols": "Lessons a week",
+    "perMonth": "per month",
+    "from": "From",
+    "cta": "Start with a free trial",
+    "row": "{count, plural, one {# lesson} other {# lessons}}"
   }
 }

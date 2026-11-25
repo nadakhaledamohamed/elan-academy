@@ -7,24 +7,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        bg: c('bg'),
-        surface: c('surface'),
-        ink: c('ink'),
-        muted: c('muted'),
-        primary: c('primary'),
-        'on-primary': c('on-primary'),
-        accent: c('accent'),
-        brass: c('brass'),
-        clay: c('clay'),
-        line: c('line'),
-        arch: c('arch'),
-        'on-arch': c('on-arch'),
+        bg: c('bg'), bg2: c('bg2'), card: c('card'), ink: c('ink'), muted: c('muted'),
+        line: c('line'), emerald: c('emerald'), accent: c('accent'), gold: c('gold'),
       },
-      fontFamily: {
-        display: ['var(--font-display)'],
-        sans: ['var(--font-body)'],
-      },
-      maxWidth: { page: '1360px' },
+      fontFamily: { sans: ['var(--font-body)'], display: ['var(--font-display)'] },
+      maxWidth: { page: '1200px' },
       transitionTimingFunction: { elan: 'cubic-bezier(0.22, 1, 0.36, 1)' },
     },
   },

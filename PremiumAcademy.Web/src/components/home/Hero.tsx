@@ -1,83 +1,112 @@
 'use client';
 
 import { useRef } from 'react';
-import { useLocale, useTranslations } from 'next-intl';
-import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
+import { motion, useMotionValue, useScroll, useSpring, useTransform, useReducedMotion } from 'framer-motion';
+import { ArrowRight, Check, Gift, Video } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
-import { Rosette, Halo } from '@/components/geometry/Rosette';
-import { Magnetic } from '@/components/ui/Magnetic';
+import { Rosette } from '@/components/geometry/Rosette';
+import { Magnetic, ease } from '@/components/motion';
 
-const ease = [0.22, 1, 0.36, 1] as const;
+const container = { hidden: {}, show: { transition: { staggerChildren: 0.11, delayChildren: 0.25 } } };
+const item = { hidden: { opacity: 0, y: 30, filter: 'blur(8px)' }, show: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.9, ease } } };
 
 export function Hero() {
   const t = useTranslations('hero');
-  const locale = useLocale();
-  const other = locale === 'ar' ? 'en' : 'ar';
-  const ref = useRef<HTMLElement>(null);
+  const trust = useTranslations('trust');
   const reduce = useReducedMotion();
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
-  const rotate = useTransform(scrollYProgress, [0, 1], [0, 45]);
-  const archY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 90]);
-  const haloRotate = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : -20]);
+  const ref = useRef<HTMLElement>(null);
   const facts = t.raw('facts') as string[];
-  const rise = (i: number) =>
-    reduce ? {} : { initial: { opacity: 0, y: 32 }, animate: { opacity: 1, y: 0 }, transition: { duration: 1, delay: 0.15 + i * 0.12, ease } };
+  const trustItems = trust.raw('items') as string[];
+
+  // Scroll parallax: the artwork drifts and fades as the hero leaves.
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
+  const artY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 140]);
+  const artScale = useTransform(scrollYProgress, [0, 1], [1, reduce ? 1 : 0.86]);
+  const copyY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 60]);
+  const fade = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+
+  // Pointer parallax: layers move by different amounts for depth.
+  const mx = useSpring(useMotionValue(0), { stiffness: 60, damping: 16 });
+  const my = useSpring(useMotionValue(0), { stiffness: 60, damping: 16 });
+  const near = { x: useTransform(mx, (v) => v * 34), y: useTransform(my, (v) => v * 34) };
+  const far = { x: useTransform(mx, (v) => v * -16), y: useTransform(my, (v) => v * -16) };
+  const onMove = (e: React.PointerEvent) => {
+    if (reduce || e.pointerType !== 'mouse') return;
+    const r = e.currentTarget.getBoundingClientRect();
+    mx.set((e.clientX - r.left) / r.width - 0.5);
+    my.set((e.clientY - r.top) / r.height - 0.5);
+  };
 
   return (
-    <section ref={ref} className="relative overflow-hidden">
-      <div className="container-page grid min-h-[100svh] items-end gap-10 pt-28 lg:grid-cols-[1.15fr_0.85fr] lg:gap-6 lg:pt-32">
-        <div className="relative z-10 flex flex-col gap-7 pb-14 lg:pb-20">
-          <motion.p className="label flex items-center gap-4" {...rise(0)}>
-            <span className="h-px w-11 bg-brass" aria-hidden="true" />
-            {t('eyebrow')}
+    <section ref={ref} onPointerMove={onMove} className="on-emerald emerald-panel relative overflow-hidden">
+      <div className="grid-lines pointer-events-none absolute inset-0" aria-hidden="true" />
+      <div className="glow pointer-events-none absolute -top-40 end-[-10%] h-[620px] w-[620px] rounded-full" style={{ background: 'radial-gradient(circle, rgb(30 190 140 / 0.35), transparent 65%)' }} aria-hidden="true" />
+
+      <div className="container-page relative grid min-h-[100svh] items-center gap-12 pb-28 pt-32 lg:grid-cols-[1.05fr_0.95fr]">
+        <motion.div variants={container} initial="hidden" animate="show" style={{ y: copyY, opacity: fade }} className="flex flex-col items-start gap-6">
+          <motion.p variants={item} className="glass inline-flex items-center gap-3 rounded-full py-2 pe-5 ps-3 text-[0.85rem] font-medium">
+            <span className="ping relative inline-block h-2 w-2 rounded-full bg-accent text-accent" />
+            {t('badge')}
           </motion.p>
-          <motion.h1 className="display-xl max-w-[11ch] lg:max-w-[12ch]" {...rise(1)}>
-            {t.rich('title', { em: (c) => <em className="text-accent">{c}</em> })}
+          <motion.h1 variants={item} className="h-hero max-w-[15ch]">
+            {t.rich('title', { em: (c) => <em className="gold-text">{c}</em> })}
           </motion.h1>
-          <motion.p className="max-w-md text-lg leading-relaxed text-muted" {...rise(2)}>
+          <motion.p variants={item} className="lead max-w-lg !text-[1.12rem]">
             {t('body')}
           </motion.p>
-          <motion.div className="mt-2 flex flex-wrap items-center gap-x-9 gap-y-6" {...rise(3)}>
+          <motion.div variants={item} className="mt-2 flex flex-wrap items-center gap-3">
             <Magnetic>
-              <Link href="/book" className="btn-primary">{t('primary')}</Link>
+              <Link href="/book" className="btn btn-gold">
+                {t('primary')}
+                <ArrowRight size={18} aria-hidden="true" className="rtl:-scale-x-100" />
+              </Link>
             </Magnetic>
-            <Link href="/courses" className="link-quiet">{t('secondary')}</Link>
+            <Link href="/courses" className="btn btn-ghost">{t('secondary')}</Link>
           </motion.div>
-          <motion.ul className="mt-8 flex flex-wrap gap-x-8 gap-y-2 border-t border-line pt-5 text-sm text-muted" {...rise(4)}>
-            {facts.map((f, i) => (
-              <li key={f} className="flex items-baseline gap-2">
-                <sup className="text-brass">{i + 1}</sup>
+          <motion.ul variants={item} className="mt-3 flex flex-wrap gap-x-6 gap-y-2 text-[0.92rem] text-muted">
+            {facts.map((f) => (
+              <li key={f} className="flex items-center gap-2">
+                <Check size={16} className="text-accent" aria-hidden="true" />
                 {f}
               </li>
             ))}
           </motion.ul>
-        </div>
+        </motion.div>
 
-        {/* The arch: its curve is the rosette's outer circle, so artwork and architecture are one figure. */}
-        <motion.div className="relative mx-auto w-full max-w-[470px] self-end" style={{ y: archY }}>
-          <motion.div className="pointer-events-none absolute left-1/2 top-0 aspect-square w-[150%] -translate-x-1/2 -translate-y-[16.7%] text-line" style={{ rotate: haloRotate }}>
-            <Halo className="h-full w-full" />
+        {/* Artwork: glow, rotating rosette and two floating glass cards on separate depth layers. */}
+        <motion.div className="relative mx-auto aspect-square w-full max-w-[520px]" style={{ y: artY, scale: artScale }} initial={{ opacity: 0, scale: 0.8, rotate: -20 }} animate={{ opacity: 1, scale: 1, rotate: 0 }} transition={{ duration: 1.6, ease, delay: 0.2 }}>
+          <div className="glow absolute inset-[8%] rounded-full" style={{ background: 'radial-gradient(circle, rgb(217 169 63 / 0.42), rgb(16 120 92 / 0.25) 45%, transparent 70%)', filter: 'blur(30px)' }} aria-hidden="true" />
+          <motion.div className="absolute inset-0" style={far}>
+            <div className="absolute inset-[6%] rounded-full border border-white/10" style={{ background: 'radial-gradient(circle at 35% 30%, rgb(255 255 255 / 0.1), rgb(255 255 255 / 0.02) 60%)', WebkitBackdropFilter: 'blur(6px)', backdropFilter: 'blur(6px)' }} />
+            <Rosette className="absolute inset-0 h-full w-full" />
           </motion.div>
-          <motion.div
-            className="relative overflow-hidden rounded-t-full bg-arch"
-            style={{ boxShadow: '0 0 0 1px rgb(var(--brass)), 0 0 0 9px rgb(var(--bg)), 0 0 0 10px rgb(var(--brass) / 0.7)' }}
-            initial={reduce ? false : { clipPath: 'inset(100% 0 0 0 round 999px 999px 0 0)' }}
-            animate={{ clipPath: 'inset(0% 0 0 0 round 999px 999px 0 0)' }}
-            transition={{ duration: 1.4, ease }}
-          >
-            <Rosette rotate={rotate} delay={0.9} className="block w-full" />
-            <div className="mx-auto h-16 w-px bg-brass/70" aria-hidden="true" />
-            <p
-              lang={other}
-              dir={other === 'ar' ? 'rtl' : 'ltr'}
-              className="whitespace-pre-line px-6 pb-12 pt-5 text-center text-[1.7rem] leading-snug text-on-arch"
-              style={{ fontFamily: other === 'ar' ? "'Reem Kufi', sans-serif" : "'Cormorant Garamond', serif", fontStyle: other === 'ar' ? 'normal' : 'italic', fontWeight: other === 'ar' ? 600 : 300 }}
-            >
-              {t('counterpart')}
-            </p>
+          <motion.div className="absolute -start-2 top-[12%] sm:-start-8" style={near}>
+            <div className="glass float flex items-center gap-3 rounded-2xl p-4">
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl" style={{ background: 'linear-gradient(135deg, var(--gold-hi), var(--gold-lo))', color: '#1b1403' }}><Gift size={20} aria-hidden="true" /></span>
+              <span><span className="block text-[0.98rem] font-semibold">{t('card1t')}</span><span className="block text-[0.82rem] text-muted">{t('card1d')}</span></span>
+            </div>
+          </motion.div>
+          <motion.div className="absolute -end-2 bottom-[14%] sm:-end-6" style={near}>
+            <div className="glass float-2 flex items-center gap-3 rounded-2xl p-4">
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent/20 text-accent"><Video size={20} aria-hidden="true" /></span>
+              <span><span className="block text-[0.98rem] font-semibold" dir="ltr">{t('card2t')}</span><span className="block text-[0.82rem] text-muted">{t('card2d')}</span></span>
+            </div>
           </motion.div>
         </motion.div>
       </div>
+
+      {/* Trust bar */}
+      <motion.div className="container-page relative -mt-16 pb-10" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 1, ease }}>
+        <ul className="glass grid gap-x-6 gap-y-3 rounded-3xl px-6 py-5 text-[0.9rem] sm:grid-cols-2 lg:grid-cols-4">
+          {trustItems.map((x) => (
+            <li key={x} className="flex items-center gap-2.5">
+              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gold/15 text-gold"><Check size={14} aria-hidden="true" /></span>
+              {x}
+            </li>
+          ))}
+        </ul>
+      </motion.div>
     </section>
   );
 }

@@ -21,7 +21,8 @@ Requires Node 20 or newer. TypeScript is pinned to 5.x because Next.js 15 does n
 | `src/content/site.ts` | Contact details, courses, plans and prices (replaced by API data in Stage 3) |
 | `src/app/globals.css` | Design tokens for both themes, fonts, base type styles |
 | `src/lib/geometry.ts` | Generates all rosette, star and scale artwork as SVG paths |
-| `src/components/geometry` | `Rosette` (drawn on entry) and `Halo` (construction lines) |
+| `src/components/geometry` | `Rosette`, `Halo` and `CourseEmblem` (one cover artwork per course) |
+| `src/components/motion.tsx` | Shared Framer Motion pieces: reveal, stagger, counter, tilt, magnetic |
 | `src/components/home` | Homepage sections |
 | `src/components/layout` | Header, full-screen menu, language and theme switches, footer |
 | `src/i18n` | Locale routing, request config and locale-aware `Link` |
@@ -33,6 +34,7 @@ Next: Courses, About, Our Tutor, Contact, legal pages and the booking flow. Thos
 
 ## Placeholders to replace
 
+- Testimonial cards are labelled empty slots until real feedback is supplied (`testimonials.*`).
 - Tutor name, title, biography and credentials (`tutor.*` in both message files), shown in square brackets.
 - Lesson platform and cancellation policy in the FAQ, shown in square brackets.
 - Plan prices in `src/content/site.ts` are provisional and flagged on the page.
