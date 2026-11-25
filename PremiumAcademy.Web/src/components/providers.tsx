@@ -8,7 +8,7 @@ import { ScrollProgress, SmoothScroll } from './scroll';
 export function Providers({ children }: { children: ReactNode }) {
   return (
     <ThemeProvider attribute="data-theme" defaultTheme="dark" enableSystem={false} storageKey="elan-theme">
-      <MotionConfig reducedMotion="user">
+      <MotionConfig reducedMotion="never">
         <SmoothScroll>
           <ScrollProgress />
           {children}

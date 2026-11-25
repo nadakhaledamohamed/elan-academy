@@ -40,7 +40,7 @@ export function StaggerItem({ children, className }: { children: ReactNode; clas
 export function Counter({ value, prefix = '', suffix = '', decimals = 0 }: { value: number; prefix?: string; suffix?: string; decimals?: number }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: '-60px' });
-  const reduce = useReducedMotion();
+  const reduce = false; // entrance, hover and pointer motion always run; scroll.tsx handles reduced-motion
   useEffect(() => {
     if (!inView || !ref.current) return;
     const node = ref.current;
@@ -70,7 +70,7 @@ export function SpringNumber({ value, format }: { value: number; format: (n: num
 
 /** 3D tilt toward the pointer plus a gold spotlight that follows it. */
 export function Tilt({ children, className, max = 7 }: { children: ReactNode; className?: string; max?: number }) {
-  const reduce = useReducedMotion();
+  const reduce = false; // entrance, hover and pointer motion always run; scroll.tsx handles reduced-motion
   const rx = useSpring(useMotionValue(0), { stiffness: 180, damping: 18 });
   const ry = useSpring(useMotionValue(0), { stiffness: 180, damping: 18 });
   const move = (e: PointerEvent<HTMLDivElement>) => {
@@ -96,7 +96,7 @@ export function Tilt({ children, className, max = 7 }: { children: ReactNode; cl
 
 /** Pulls its child a few pixels toward the mouse. */
 export function Magnetic({ children, strength = 0.3 }: { children: ReactNode; strength?: number }) {
-  const reduce = useReducedMotion();
+  const reduce = false; // entrance, hover and pointer motion always run; scroll.tsx handles reduced-motion
   const x = useSpring(useMotionValue(0), { stiffness: 220, damping: 16 });
   const y = useSpring(useMotionValue(0), { stiffness: 220, damping: 16 });
   if (reduce) return <span className="inline-block">{children}</span>;

@@ -22,7 +22,7 @@ const sparks = [
 export function Hero() {
   const t = useTranslations('hero');
   const trust = useTranslations('trust');
-  const reduce = useReducedMotion();
+  const reduce = false; // entrance, hover and pointer motion always run; scroll.tsx handles reduced-motion
   const ref = useRef<HTMLElement>(null);
   const facts = t.raw('facts') as string[];
   const trustItems = trust.raw('items') as string[];
@@ -105,8 +105,8 @@ export function Hero() {
           <motion.div className="absolute inset-0" initial={{ opacity: 0, scale: 0.7, rotate: -30 }} animate={{ opacity: 1, scale: 1, rotate: 0 }} transition={{ duration: 1.8, ease, delay: 0.2 }}>
             {/* breathing glow and expanding rings */}
             <div className="glow absolute inset-[4%] rounded-full" style={{ background: 'radial-gradient(circle, rgb(217 169 63 / 0.5), rgb(16 120 92 / 0.28) 45%, transparent 70%)', filter: 'blur(34px)' }} aria-hidden="true" />
-            <div className="ring absolute inset-[6%] rounded-full border border-gold/50" aria-hidden="true" />
-            <div className="ring absolute inset-[6%] rounded-full border border-gold/40" style={{ animationDelay: '2.2s' }} aria-hidden="true" />
+            <div className="pulse-ring absolute inset-[6%] rounded-full border border-gold/50" aria-hidden="true" />
+            <div className="pulse-ring absolute inset-[6%] rounded-full border border-gold/40" style={{ animationDelay: '2.2s' }} aria-hidden="true" />
 
             {/* back layer: sparkles */}
             <motion.div className="absolute inset-[-6%]" style={back} aria-hidden="true">

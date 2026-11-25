@@ -154,7 +154,7 @@
 @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
 @keyframes glow { 0%, 100% { opacity: 0.55; transform: scale(1); } 50% { opacity: 0.95; transform: scale(1.12); } }
 @keyframes twinkle { 0%, 100% { opacity: 0.15; transform: scale(0.6); } 50% { opacity: 1; transform: scale(1.25); } }
-@keyframes ring { 0% { transform: scale(0.72); opacity: 0.55; } 100% { transform: scale(1.18); opacity: 0; } }
+@keyframes pulse-ring { 0% { transform: scale(0.72); opacity: 0.55; } 100% { transform: scale(1.18); opacity: 0; } }
 @keyframes ping { 0% { transform: scale(1); opacity: 0.8; } 100% { transform: scale(2.4); opacity: 0; } }
 .spin-slow, .spin-rev, .spin-mid { transform-box: fill-box; transform-origin: center; }
 .spin-slow { animation: spin 80s linear infinite; }
@@ -167,7 +167,7 @@
 .glow { animation: glow 7s ease-in-out infinite; }
 .bar { transform-box: fill-box; transform-origin: center; animation: pulse-bar 1.8s ease-in-out infinite; }
 .twinkle { animation: twinkle 3.4s ease-in-out infinite; }
-.ring { animation: ring 4.5s cubic-bezier(0.2, 0.6, 0.3, 1) infinite; }
+.pulse-ring { animation: pulse-ring 4.5s cubic-bezier(0.2, 0.6, 0.3, 1) infinite; }
 .orbit { animation: spin 22s linear infinite; }
 .orbit-rev { animation: spin 34s linear infinite reverse; }
 .ping::after { content: ''; position: absolute; inset: 0; border-radius: 999px; background: currentColor; animation: ping 1.8s ease-out infinite; }
@@ -175,7 +175,10 @@
 .group:hover .spin-mid { animation-duration: 8s; }
 .group:hover .spin-rev { animation-duration: 10s; }
 
+/* Reduced-motion visitors keep the gentle ambient motion (slow rotation, glow, fades).
+   What is switched off for them is in scroll.tsx: smooth-scroll takeover and scroll-scrubbed movement. */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; }
+  .marquee { animation-duration: 90s; }
+  .float, .float-2 { animation: none; }
 }
