@@ -19,9 +19,17 @@ const links = [
 export function Wordmark() {
   return (
     <Link href="/" className="flex items-center gap-2.5" aria-label="Élan Academy">
-      <svg viewBox="0 0 32 32" className="h-8 w-8" aria-hidden="true">
-        <path d="M3 32V16a13 13 0 0 1 26 0v16z" fill="#0B5C48" />
-        <path d="M16 6 20.6 19.4 7 16 20.6 12.6 16 26 11.4 12.6 25 16 11.4 19.4z" fill="none" stroke="#F6DE9E" strokeWidth="1.3" />
+      <svg viewBox="0 0 40 40" className="h-9 w-9" aria-hidden="true">
+        <defs>
+          <linearGradient id="lm-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#15805F" /><stop offset="1" stopColor="#052A20" /></linearGradient>
+          <linearGradient id="lm-au" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#F6DE9E" /><stop offset="1" stopColor="#C8962E" /></linearGradient>
+        </defs>
+        <rect x="1" y="1" width="38" height="38" rx="11" fill="url(#lm-bg)" stroke="url(#lm-au)" strokeWidth="1.2" />
+        {/* É monogram: three bars and a rising accent */}
+        <g fill="none" stroke="url(#lm-au)" strokeWidth="3.2" strokeLinecap="round">
+          <path d="M13 16h14M13 23h10M13 30h14" />
+          <path d="M21 10.5l6-4" />
+        </g>
       </svg>
       <span lang="en" className="text-[1.15rem] font-bold tracking-[-0.02em]" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
         Élan <span className="font-medium opacity-70">Academy</span>
