@@ -6,10 +6,9 @@ import { AnimatePresence, motion, useScroll, useSpring } from 'framer-motion';
 import { ArrowRight, ArrowUpRight, CalendarClock, Check, Gift, MessageCircle, Plus, Quote, Route, UserCheck } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
 import { contact, courses } from '@/content/site';
-import { CourseEmblem } from '@/components/geometry/CourseEmblem';
 import { Halo, Rosette } from '@/components/geometry/Rosette';
 import { Counter, Magnetic, Reveal, Stagger, StaggerItem, Tilt, ease } from '@/components/motion';
-import { Parallax, RevealText, useScrub } from '@/components/scroll';
+import { RevealText, useScrub } from '@/components/scroll';
 import { cn } from '@/lib/cn';
 
 type TD = { t: string; d: string };
@@ -62,72 +61,6 @@ export function Stats() {
               </Tilt>
             </StaggerItem>
           ))}
-        </Stagger>
-      </div>
-    </section>
-  );
-}
-
-const hoverArt: Record<string, string> = {
-  foundation: 'group-hover:-translate-y-3 group-hover:scale-105',
-  tajweed: 'group-hover:scale-x-110',
-  hifz: 'group-hover:scale-110 group-hover:-translate-y-1',
-  arabic: 'group-hover:rotate-[8deg] group-hover:scale-105',
-  'islamic-studies': 'group-hover:scale-110',
-};
-
-/** Courses as a bento grid. Each card has its own colour, cover art, glow and hover behaviour. */
-export function Courses() {
-  const t = useTranslations();
-  return (
-    <section className="section" id="courses">
-      <div className="container-page">
-        <div className="flex flex-wrap items-end justify-between gap-6">
-          <Heading label={t('courses.label')} title={t('courses.title')} />
-          <Reveal>
-            <Link href="/courses" className="btn btn-ghost">{t('courses.all')}<ArrowRight size={17} aria-hidden="true" className="rtl:-scale-x-100" /></Link>
-          </Reveal>
-        </div>
-        <Stagger className="mt-12 grid gap-5 lg:grid-cols-6" gap={0.12}>
-          {courses.map((c, i) => {
-            const wide = i < 2;
-            const outcomes = t.raw(`outcomes.${c.slug}`) as string[];
-            return (
-              <StaggerItem key={c.slug} className={wide ? 'lg:col-span-3' : 'lg:col-span-2'}>
-                <Tilt className="on-emerald group h-full rounded-[28px] border border-white/10 shadow-[0_30px_70px_-30px_rgba(0,0,0,0.6)]" max={6}>
-                  <Link href="/courses" className={cn('relative flex h-full flex-col', wide && 'sm:flex-row')} style={{ background: `linear-gradient(155deg, ${c.from} 0%, ${c.to} 78%)` }}>
-                    <div className={cn('relative flex items-center justify-center overflow-hidden p-6', wide ? 'sm:w-[44%]' : 'h-52')}>
-                      <div className="absolute h-56 w-56 rounded-full opacity-50 blur-3xl transition-opacity duration-700 group-hover:opacity-90" style={{ background: c.glow }} aria-hidden="true" />
-                      <Parallax distance={22} className="relative h-full max-h-56 w-full">
-                        <CourseEmblem slug={c.slug} className={cn('h-full w-full text-white transition-transform duration-700 ease-elan', hoverArt[c.slug])} />
-                      </Parallax>
-                    </div>
-                    <div className="relative flex flex-1 flex-col gap-4 p-7">
-                      <div className="flex flex-wrap items-center gap-2 text-[0.78rem] font-medium">
-                        <span className="rounded-full bg-black/25 px-3 py-1" style={{ color: c.glow }}>{String(i + 1).padStart(2, '0')}</span>
-                        <span className="rounded-full bg-white/10 px-3 py-1">{t(`courses.items.${c.slug}.level`)}</span>
-                        <span className="rounded-full bg-white/10 px-3 py-1">{t(`courses.items.${c.slug}.audience`)}</span>
-                      </div>
-                      <h3 className="text-[1.5rem] font-bold leading-tight tracking-[-0.02em]">{t(`courses.items.${c.slug}.name`)}</h3>
-                      <p className="text-[0.96rem] leading-relaxed text-white/75">{t(`courses.items.${c.slug}.desc`)}</p>
-                      <ul className="mt-1 flex flex-col gap-2 border-t border-white/10 pt-4 text-[0.9rem]">
-                        {outcomes.map((o) => (
-                          <li key={o} className="flex items-start gap-2.5">
-                            <Check size={16} className="mt-0.5 shrink-0" style={{ color: c.glow }} aria-hidden="true" />
-                            {o}
-                          </li>
-                        ))}
-                      </ul>
-                      <span className="mt-auto flex items-center gap-2 pt-3 text-[0.92rem] font-semibold" style={{ color: c.glow }}>
-                        {t('courses.view')}
-                        <ArrowUpRight size={17} aria-hidden="true" className="transition-transform duration-500 group-hover:-translate-y-1 group-hover:translate-x-1 rtl:-scale-x-100 rtl:group-hover:-translate-x-1" />
-                      </span>
-                    </div>
-                  </Link>
-                </Tilt>
-              </StaggerItem>
-            );
-          })}
         </Stagger>
       </div>
     </section>

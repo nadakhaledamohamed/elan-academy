@@ -24,7 +24,7 @@ Requires Node 20 or newer. TypeScript is pinned to 5.x because Next.js 15 does n
 | `src/components/geometry` | `Rosette`, `Halo` and `CourseEmblem` (one cover artwork per course) |
 | `src/components/scroll.tsx` | Lenis smooth scrolling, scroll progress bar, GSAP ScrollTrigger scrub and parallax, word-by-word text reveal |
 | `src/components/motion.tsx` | Shared Framer Motion pieces: reveal, stagger, counter, tilt, magnetic |
-| `src/components/home` | Homepage sections |
+| `src/components/home` | Homepage sections; `Library.tsx` is the course shelf of 3D books |
 | `src/components/layout` | Header, full-screen menu, language and theme switches, footer |
 | `src/i18n` | Locale routing, request config and locale-aware `Link` |
 

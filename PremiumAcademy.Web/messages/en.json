@@ -84,9 +84,9 @@
   "courses": {
     "label": "Courses",
     "title": "Five paths, one standard.",
-    "view": "View course",
+    "view": "Explore course",
     "all": "All courses",
-    "hint": "Scroll to move through the courses",
+    "hint": "Choose a book to open it.",
     "items": {
       "foundation": {
         "name": "Foundation",
@@ -118,7 +118,9 @@
         "level": "All levels",
         "desc": "Belief, worship, prophetic biography, hadith and manners, taught at the student's level."
       }
-    }
+    },
+    "open": "Open {name}",
+    "lead": "Five courses, each a volume of its own. Take one from the shelf."
   },
   "why": {
     "label": "Why Élan",

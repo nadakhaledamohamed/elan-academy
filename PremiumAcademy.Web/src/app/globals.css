@@ -182,3 +182,97 @@
   .marquee { animation-duration: 90s; }
   .float, .float-2 { animation: none; }
 }
+
+/* ------------------------------------------------------------------
+   The course library: parchment room, oak shelf, five bound volumes.
+   It keeps its own warm palette in both themes, like a lit reading room.
+------------------------------------------------------------------- */
+.library {
+  --ink: 22 39 31;
+  --muted: 78 80 62;
+  --gold: 134 94 16;
+  --gt1: #b8862b; --gt2: #8a6114; --gt3: #b8862b;
+  --line: 134 94 16; --line-a: 0.3;
+  --card: 255 250 238; --card-a: 0.85;
+  --foil: #ecd08a;
+  color: rgb(var(--ink));
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .25 0 0 0 0 .1 0 0 0 .22 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E"),
+    radial-gradient(1000px 520px at 50% 0%, rgb(255 250 232 / 0.95), transparent 70%),
+    radial-gradient(900px 600px at 50% 110%, rgb(120 86 30 / 0.22), transparent 65%),
+    linear-gradient(180deg, #f4ead2 0%, #ead9b6 100%);
+  border-block: 1px solid rgb(134 94 16 / 0.28);
+}
+.shelf-cell { display: flex; flex-direction: column; align-items: center; }
+.plank {
+  width: 100%; height: 18px; position: relative;
+  background: linear-gradient(180deg, #b48d58 0%, #8f6b3c 55%, #6c4f2a 100%);
+  box-shadow: 0 1px 0 #d9b77f inset, 0 18px 28px -14px rgb(60 40 12 / 0.55);
+}
+.plank::after { content: ''; position: absolute; inset-inline: 0; top: 100%; height: 10px; background: linear-gradient(180deg, rgb(60 40 12 / 0.28), transparent); }
+.book-stage { perspective: 1500px; padding: 34px 0 0; width: 100%; display: flex; justify-content: center; }
+.book {
+  --w: 208px; --h: 304px; --d: 40px; --s: 1;
+  position: relative; width: var(--w); height: var(--h);
+  transform-style: preserve-3d;
+  transform: rotateY(calc(var(--s) * 18deg));
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+[dir='rtl'] .book { --s: -1; }
+.book:hover, .book:focus-within { transform: translateY(-12px) rotateY(calc(var(--s) * 27deg)); }
+.book[data-open='true'] { transform: translateY(-12px) rotateY(calc(var(--s) * 9deg)); }
+.book > * { position: absolute; }
+.book-shadow { inset-inline: -6%; bottom: -10px; height: 22px; background: radial-gradient(closest-side, rgb(50 32 8 / 0.5), transparent); filter: blur(5px); transform: translateZ(calc(var(--d) * -0.5)) rotateX(90deg); }
+.book-back { inset: 0; background: var(--c2); transform: translateZ(calc(var(--d) * -0.5)); border-radius: 3px; }
+.book-spine {
+  top: 0; inset-inline-start: 0; width: var(--d); height: var(--h);
+  transform: translateX(calc(var(--s) * var(--d) * -0.5)) rotateY(-90deg);
+  background: linear-gradient(90deg, rgb(0 0 0 / 0.35), transparent 30%, transparent 70%, rgb(0 0 0 / 0.3)), var(--c1);
+  display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 14px 0; color: var(--foil);
+}
+.book-spine i { display: block; width: 100%; height: 5px; border-block: 1px solid var(--foil); opacity: 0.85; }
+.book-spine span { writing-mode: vertical-rl; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em; white-space: nowrap; }
+.book-edge {
+  top: 5px; inset-inline-end: 0; width: var(--d); height: calc(var(--h) - 10px);
+  transform: translateX(calc(var(--s) * (var(--d) * 0.5 - 6px))) rotateY(90deg);
+  background: repeating-linear-gradient(90deg, #efe3c6 0 2px, #d8c7a0 2px 3px);
+}
+.book-top { inset-inline: 6px; top: 0; height: var(--d); transform: translateY(calc(var(--d) * -0.5 + 5px)) rotateX(90deg); background: repeating-linear-gradient(0deg, #efe3c6 0 2px, #d8c7a0 2px 3px); }
+.book-page {
+  inset: 5px; inset-inline-start: 2px; inset-inline-end: 6px;
+  transform: translateZ(calc(var(--d) * 0.5 - 2px));
+  background: linear-gradient(calc(var(--s) * 90deg), #e4d5b2 0%, #f7efdc 9%, #fbf5e6 100%);
+  color: #1c2a22; padding: 18px 16px 16px; overflow: hidden; display: flex; flex-direction: column; gap: 9px;
+  box-shadow: inset 0 0 0 1px rgb(134 94 16 / 0.18);
+}
+.book-cover {
+  inset: 0; transform-style: preserve-3d;
+  transform-origin: left center;
+  transform: translateZ(calc(var(--d) * 0.5)) rotateY(0deg);
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+[dir='rtl'] .book-cover { transform-origin: right center; }
+.book[data-open='true'] .book-cover { transform: translateZ(calc(var(--d) * 0.5)) rotateY(calc(var(--s) * -128deg)); }
+.book-cover > * { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 3px 6px 6px 3px; overflow: hidden; }
+[dir='rtl'] .book-cover > * { border-radius: 6px 3px 3px 6px; }
+.cover-front {
+  color: var(--foil);
+  background:
+    linear-gradient(calc(var(--s) * 100deg), rgb(255 255 255 / 0.16) 0%, transparent 28%, transparent 62%, rgb(0 0 0 / 0.32) 100%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .35 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E"),
+    radial-gradient(120% 90% at 30% 20%, var(--c0), var(--c1) 60%, var(--c2) 100%);
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.35);
+}
+/* the hinge groove beside the spine */
+.cover-front::before { content: ''; position: absolute; inset-block: 0; inset-inline-start: 11px; width: 3px; background: linear-gradient(90deg, rgb(0 0 0 / 0.35), rgb(255 255 255 / 0.12)); }
+/* a band of light that crosses the foil on hover */
+.cover-front::after { content: ''; position: absolute; inset: 0; background: linear-gradient(105deg, transparent 38%, rgb(255 240 200 / 0.3) 50%, transparent 62%); transform: translateX(-110%); transition: transform 0.9s ease; }
+.book:hover .cover-front::after, .book:focus-within .cover-front::after { transform: translateX(110%); }
+.cover-inside { transform: rotateY(180deg); background: repeating-linear-gradient(45deg, #e9dcbc 0 6px, #e2d3ae 6px 12px); box-shadow: inset 0 0 0 8px var(--c1), inset 0 0 0 9px var(--foil); }
+.book-hit { inset: 0; transform: translateZ(calc(var(--d) * 0.5 + 1px)); cursor: pointer; border-radius: 4px; background: transparent; }
+.book-hit:focus-visible { outline: 3px solid #8a6114; outline-offset: 6px; }
+@media (max-width: 639px) { .book { --w: 148px; --h: 216px; --d: 28px; } .book-page { padding: 12px 10px 10px; gap: 6px; } .book-stage { padding-top: 22px; } }
+@media (prefers-reduced-motion: reduce) {
+  .book, .book-cover, .cover-front::after { transition-duration: 0.01ms; }
+  .book:hover, .book:focus-within { transform: rotateY(calc(var(--s) * 18deg)); }
+}
