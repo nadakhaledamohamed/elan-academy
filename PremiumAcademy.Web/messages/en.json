@@ -1,0 +1,241 @@
+{
+  "meta": {
+    "title": "Élan Academy · Private online tuition in Quran, Arabic and Islamic studies",
+    "description": "One-to-one online lessons in Quran reading, Tajweed, memorisation, Arabic and Islamic studies with a single dedicated tutor. Book a free trial lesson."
+  },
+  "nav": {
+    "home": "Home",
+    "courses": "Courses",
+    "about": "The Academy",
+    "tutor": "Our Tutor",
+    "book": "Book",
+    "contact": "Contact",
+    "menu": "Menu",
+    "close": "Close",
+    "bookTrial": "Book a free trial",
+    "toArabic": "العربية",
+    "toEnglish": "English",
+    "themeLight": "Day",
+    "themeDark": "Night",
+    "switchTheme": "Switch between day and night theme",
+    "switchLanguage": "Change language",
+    "skip": "Skip to content"
+  },
+  "hero": {
+    "eyebrow": "Private tuition, online",
+    "title": "Knowledge, constructed with <em>élan.</em>",
+    "body": "One-to-one lessons in Quran, Arabic and Islamic studies, taught live by one dedicated tutor and built around each student.",
+    "primary": "Book a free trial",
+    "secondary": "Explore courses",
+    "counterpart": "المعرفة تُبنى\nبثقةٍ وإتقان",
+    "facts": [
+      "One-to-one, live online",
+      "Free trial lesson first",
+      "Scheduled in your time zone"
+    ]
+  },
+  "intro": {
+    "label": "The Academy",
+    "title": "A small academy, by design.",
+    "p1": "Élan Academy is one tutor and her students. There is no rotating staff and no crowded classroom: the person who meets you in the trial lesson is the person who teaches every lesson after it.",
+    "p2": "That scale is the point. It means a plan drawn for one student, progress that is noticed week by week, and a parent who always knows who to ask.",
+    "link": "About the academy"
+  },
+  "philosophy": {
+    "label": "Philosophy",
+    "items": [
+      {
+        "t": "Precision first.",
+        "d": "Every sound, letter and rule is placed correctly before anything is built on it."
+      },
+      {
+        "t": "Then fluency.",
+        "d": "Repetition with purpose turns careful work into ease."
+      },
+      {
+        "t": "Then confidence.",
+        "d": "A student who knows why they are right carries it into everything else."
+      }
+    ]
+  },
+  "courses": {
+    "label": "Courses",
+    "title": "Five paths, one standard.",
+    "view": "View course",
+    "all": "All courses",
+    "hint": "Scroll to move through the courses",
+    "items": {
+      "foundation": {
+        "name": "Foundation",
+        "audience": "Children and adults",
+        "level": "Beginner",
+        "desc": "Arabic letters, their sounds and first steps in reading the Quran, for students starting from the beginning."
+      },
+      "tajweed": {
+        "name": "Quran Recitation and Tajweed",
+        "audience": "Children and adults",
+        "level": "All levels",
+        "desc": "The rules of recitation: points of articulation, the qualities of each letter and how to apply them when reading."
+      },
+      "hifz": {
+        "name": "Quran Memorisation",
+        "audience": "Children and adults",
+        "level": "Tailored to the student",
+        "desc": "A personal memorisation plan with regular revision, so what is learned stays learned."
+      },
+      "arabic": {
+        "name": "Arabic Language",
+        "audience": "Children and adults",
+        "level": "All levels",
+        "desc": "Reading, writing, listening and speaking, covering both Quranic and everyday Arabic."
+      },
+      "islamic-studies": {
+        "name": "Islamic Studies",
+        "audience": "Children and adults",
+        "level": "All levels",
+        "desc": "Belief, worship, prophetic biography, hadith and manners, taught at the student's level."
+      }
+    }
+  },
+  "why": {
+    "label": "Why Élan",
+    "title": "What a single tutor makes possible.",
+    "items": [
+      {
+        "t": "One teacher throughout",
+        "d": "The same tutor from the trial lesson onward. Nothing is lost between lessons."
+      },
+      {
+        "t": "A plan drawn for one",
+        "d": "Pace, material and revision are set for the student in front of her, not for a class."
+      },
+      {
+        "t": "Try before you commit",
+        "d": "The first lesson is free, so the decision is made on experience."
+      },
+      {
+        "t": "A rhythm that fits",
+        "d": "One to five lessons a week, in sessions of 30, 45 or 60 minutes."
+      }
+    ]
+  },
+  "tutor": {
+    "label": "Our Tutor",
+    "name": "[Tutor name]",
+    "role": "[Professional title]",
+    "body": "[A short biography will appear here once provided: background, approach and what students can expect.]",
+    "creds": [
+      "[Qualification]",
+      "[Years of teaching]",
+      "[Languages taught in]"
+    ],
+    "link": "Read her profile"
+  },
+  "method": {
+    "label": "Method",
+    "title": "Built in four moves.",
+    "steps": [
+      {
+        "t": "Assess",
+        "d": "The trial lesson finds the student's true starting point."
+      },
+      {
+        "t": "Plan",
+        "d": "A written path is set: what to cover, in what order, at what pace."
+      },
+      {
+        "t": "Practise",
+        "d": "Each lesson adds one element and secures the last."
+      },
+      {
+        "t": "Review",
+        "d": "Regular revision and clear feedback keep the structure sound."
+      }
+    ]
+  },
+  "how": {
+    "label": "How it works",
+    "title": "From first message to first lesson.",
+    "steps": [
+      {
+        "t": "Book a free trial",
+        "d": "Choose a course and a time that suits you."
+      },
+      {
+        "t": "Meet your tutor",
+        "d": "A full lesson, live and one-to-one."
+      },
+      {
+        "t": "Choose a plan",
+        "d": "Pick lessons per week and lesson length, and pay securely with PayPal."
+      },
+      {
+        "t": "Begin",
+        "d": "Lessons run at your fixed times each week."
+      }
+    ]
+  },
+  "fees": {
+    "label": "Plans and fees",
+    "title": "One rate. You set the rhythm.",
+    "note": "Prices are per month (four weeks) in US dollars, paid by PayPal. The trial lesson is free.",
+    "perWeek": "{count, plural, one {# lesson a week} other {# lessons a week}}",
+    "perMonth": "{count} lessons a month",
+    "minutes": "{count} min",
+    "length": "Lesson length",
+    "choose": "Choose {price}, {perWeek} a week, {minutes} minutes",
+    "draft": "Provisional prices, to be confirmed before launch."
+  },
+  "faq": {
+    "label": "Questions",
+    "title": "Asked before booking.",
+    "items": [
+      {
+        "q": "Is the trial lesson really free?",
+        "a": "Yes. You book it like any lesson, no payment is taken, and there is no obligation to continue."
+      },
+      {
+        "q": "Who teaches the lessons?",
+        "a": "Every lesson is taught by the academy's one tutor. You will not be passed between teachers."
+      },
+      {
+        "q": "How are lessons held?",
+        "a": "Live, online and one-to-one. [The video platform will be confirmed here.]"
+      },
+      {
+        "q": "How do I pay?",
+        "a": "Securely through PayPal, in US dollars. Élan Academy never sees or stores your card details."
+      },
+      {
+        "q": "What if we are in a different time zone?",
+        "a": "The booking calendar shows available times in your own time zone, alongside the tutor's."
+      },
+      {
+        "q": "Can I cancel or reschedule?",
+        "a": "[The cancellation and refund policy will be published here before launch.]"
+      }
+    ]
+  },
+  "cta": {
+    "title": "Begin with a free lesson.",
+    "body": "Meet your tutor, see how a lesson runs, and decide afterwards.",
+    "button": "Book a free trial",
+    "whatsapp": "Or message us on WhatsApp"
+  },
+  "footer": {
+    "tagline": "Private online tuition in Quran, Arabic and Islamic studies.",
+    "explore": "Explore",
+    "contact": "Contact",
+    "legal": "Legal",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "refunds": "Refunds",
+    "rights": "© {year} Élan Academy. All rights reserved."
+  },
+  "stub": {
+    "label": "In progress",
+    "title": "This page is next in the build.",
+    "body": "The homepage shows the approved design. This page will follow in the same style.",
+    "back": "Back to home"
+  }
+}

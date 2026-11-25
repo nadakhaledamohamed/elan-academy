@@ -1,0 +1,101 @@
+@import '@fontsource/cormorant-garamond/300.css';
+@import '@fontsource/cormorant-garamond/300-italic.css';
+@import '@fontsource/cormorant-garamond/400.css';
+@import '@fontsource/cormorant-garamond/400-italic.css';
+@import '@fontsource/josefin-sans/300.css';
+@import '@fontsource/josefin-sans/400.css';
+@import '@fontsource/josefin-sans/600.css';
+@import '@fontsource/reem-kufi/arabic-400.css';
+@import '@fontsource/reem-kufi/arabic-600.css';
+@import '@fontsource/ibm-plex-sans-arabic/400.css';
+@import '@fontsource/ibm-plex-sans-arabic/500.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design tokens. Two designed themes, not an inversion:
+   light = plaster wall by day, dark = courtyard at night. */
+:root {
+  --bg: 245 240 230;
+  --surface: 236 229 215;
+  --ink: 27 33 31;
+  --muted: 74 83 79;
+  --primary: 11 67 56;
+  --on-primary: 245 240 230;
+  --accent: 11 67 56;
+  --brass: 166 124 46;
+  --brass-hi: #f0dda6;
+  --brass-lo: #a67c2e;
+  --clay: 168 74 50;
+  --line: 211 202 184;
+  --arch: 11 67 56;
+  --on-arch: 240 226 189;
+  --font-display: 'Cormorant Garamond', 'Reem Kufi', Georgia, serif;
+  --font-body: 'Josefin Sans', 'IBM Plex Sans Arabic', system-ui, sans-serif;
+}
+[data-theme='dark'] {
+  --bg: 11 18 16;
+  --surface: 16 30 26;
+  --ink: 237 232 220;
+  --muted: 169 167 155;
+  --primary: 221 187 110;
+  --on-primary: 11 18 16;
+  --accent: 73 184 157;
+  --brass: 221 187 110;
+  --brass-hi: #f3e2b4;
+  --brass-lo: #b8903e;
+  --clay: 224 122 95;
+  --line: 38 48 45;
+  --arch: 16 35 30;
+  --on-arch: 240 226 189;
+}
+/* Arabic gets its own type voice: Kufic display, Plex body. */
+[lang='ar'] {
+  --font-display: 'Reem Kufi', 'Cormorant Garamond', serif;
+  --font-body: 'IBM Plex Sans Arabic', 'Josefin Sans', system-ui, sans-serif;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    @apply bg-bg font-sans text-ink antialiased;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  ::selection { background: rgb(var(--brass) / 0.35); }
+  :focus-visible { outline: 2px solid rgb(var(--brass)); outline-offset: 3px; }
+  h1, h2, h3 { @apply font-display font-light; }
+  /* Latin display type is tight and light; Arabic must never be letter-spaced or italicised. */
+  [lang='ar'] h1, [lang='ar'] h2, [lang='ar'] h3 { font-weight: 400; letter-spacing: 0 !important; line-height: 1.35 !important; }
+  [lang='ar'] em, [lang='ar'] .link-quiet { font-style: normal; }
+  [lang='ar'] .link-quiet { font-family: var(--font-body); font-size: 1.05rem; }
+  [lang='ar'] * { letter-spacing: 0 !important; }
+}
+
+@layer components {
+  /* While the full-screen menu is open the header sits on the arch colour, so its text tokens flip. */
+  .menu-open { --ink: var(--on-arch); --accent: var(--on-arch); --primary: var(--on-arch); --on-primary: var(--arch); }
+  .label { @apply text-xs uppercase tracking-[0.22em] text-muted; }
+  .container-page { @apply mx-auto w-full max-w-page px-6 md:px-12; }
+  .rule { @apply h-px w-full bg-line; }
+  .display-xl { @apply text-[clamp(3.25rem,9vw,7.5rem)] leading-[0.92] tracking-[-0.02em]; }
+  .display-lg { @apply text-[clamp(2.5rem,6vw,5rem)] leading-[0.98] tracking-[-0.02em]; }
+  .display-md { @apply text-[clamp(1.9rem,3.6vw,3rem)] leading-[1.05] tracking-[-0.01em]; }
+  .btn-primary {
+    @apply inline-flex min-h-[48px] items-center justify-center bg-primary px-8 pb-[13px] pt-4 text-[13px] uppercase tracking-[0.2em] text-on-primary;
+    box-shadow: 0 0 0 4px rgb(var(--bg)), 0 0 0 5px rgb(var(--brass));
+    transition: box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .btn-primary:hover { box-shadow: 0 0 0 7px rgb(var(--bg)), 0 0 0 8px rgb(var(--brass)); }
+  .link-quiet {
+    @apply font-display text-xl italic underline decoration-brass decoration-1 underline-offset-[6px];
+    transition: text-underline-offset 0.3s ease;
+  }
+  .link-quiet:hover { text-underline-offset: 10px; }
+  .placeholder { @apply text-muted; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
