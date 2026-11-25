@@ -58,7 +58,7 @@ export function Header() {
       >
         <div
           className="mx-auto flex h-[60px] max-w-page items-center justify-between rounded-full border border-white/10 ps-5 pe-2 shadow-[0_18px_50px_-20px_rgba(0,0,0,0.7)]"
-          style={{ background: 'rgb(5 26 20 / 0.72)', WebkitBackdropFilter: 'blur(18px) saturate(150%)', backdropFilter: 'blur(18px) saturate(150%)' }}
+          style={{ background: 'rgb(5 26 20 / 0.86)', WebkitBackdropFilter: 'blur(18px) saturate(150%)', backdropFilter: 'blur(18px) saturate(150%)' }}
         >
           <Wordmark />
           <nav aria-label="Primary" className="hidden items-center gap-1 text-[0.92rem] lg:flex">

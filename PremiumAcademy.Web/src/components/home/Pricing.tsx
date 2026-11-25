@@ -7,6 +7,7 @@ import { ArrowRight } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
 import { durations, plans, planId, type Duration } from '@/content/site';
 import { Reveal, SpringNumber, Stagger, StaggerItem, Tilt } from '@/components/motion';
+import { RevealText } from '@/components/scroll';
 import { cn } from '@/lib/cn';
 
 // US-dollar amounts read the same in both languages: $17, never 17 US$.
@@ -19,11 +20,11 @@ export function Pricing() {
   return (
     <section className="section" id="fees">
       <div className="container-page">
-        <Reveal className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
-          <p className="eyebrow">{t('fees.label')}</p>
-          <h2 className="h-section">{t('fees.title')}</h2>
-          <p className="lead">{t('fees.note')}</p>
-        </Reveal>
+        <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
+          <Reveal><p className="eyebrow">{t('fees.label')}</p></Reveal>
+          <RevealText text={t('fees.title')} className="h-section" />
+          <Reveal delay={0.15}><p className="lead">{t('fees.note')}</p></Reveal>
+        </div>
 
         <Reveal className="mt-10 flex justify-center">
           <fieldset className="glass inline-flex rounded-full p-1.5">

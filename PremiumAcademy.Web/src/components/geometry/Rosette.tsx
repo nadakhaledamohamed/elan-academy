@@ -7,9 +7,9 @@ export function Rosette({ fold = 16, step = 7, id = 'gold', className }: { fold?
     <svg viewBox="-270 -270 540 540" fill="none" aria-hidden="true" className={className}>
       <defs>
         <linearGradient id={id} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="var(--gold-hi)" />
-          <stop offset="0.5" stopColor="var(--gold-lo)" />
-          <stop offset="1" stopColor="var(--gold-hi)" />
+          <stop offset="0" stopColor="var(--gt1)" />
+          <stop offset="0.5" stopColor="var(--gt2)" />
+          <stop offset="1" stopColor="var(--gt1)" />
         </linearGradient>
       </defs>
       <g className="spin-slow">
@@ -25,7 +25,7 @@ export function Rosette({ fold = 16, step = 7, id = 'gold', className }: { fold?
       <g className="spin-mid">
         <path d={ringOfCircles(8, 58, 58) + star(96, 8, 3)} stroke={stroke} strokeWidth={1.2} />
       </g>
-      <circle r={6} fill="var(--gold-hi)" />
+      <circle r={6} fill="var(--gt1)" />
     </svg>
   );
 }

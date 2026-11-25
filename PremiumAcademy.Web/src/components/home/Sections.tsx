@@ -9,17 +9,18 @@ import { contact, courses } from '@/content/site';
 import { CourseEmblem } from '@/components/geometry/CourseEmblem';
 import { Halo, Rosette } from '@/components/geometry/Rosette';
 import { Counter, Magnetic, Reveal, Stagger, StaggerItem, Tilt, ease } from '@/components/motion';
+import { Parallax, RevealText, useScrub } from '@/components/scroll';
 import { cn } from '@/lib/cn';
 
 type TD = { t: string; d: string };
 
 function Heading({ label, title, lead, center }: { label: string; title: string; lead?: string; center?: boolean }) {
   return (
-    <Reveal className={cn('flex max-w-2xl flex-col gap-4', center && 'mx-auto items-center text-center')}>
-      <p className="eyebrow">{label}</p>
-      <h2 className="h-section">{title}</h2>
-      {lead && <p className="lead">{lead}</p>}
-    </Reveal>
+    <div className={cn('flex max-w-2xl flex-col gap-4', center && 'mx-auto items-center text-center')}>
+      <Reveal><p className="eyebrow">{label}</p></Reveal>
+      <RevealText text={title} className="h-section" />
+      {lead && <Reveal delay={0.15}><p className="lead">{lead}</p></Reveal>}
+    </div>
   );
 }
 
@@ -97,7 +98,9 @@ export function Courses() {
                   <Link href="/courses" className={cn('relative flex h-full flex-col', wide && 'sm:flex-row')} style={{ background: `linear-gradient(155deg, ${c.from} 0%, ${c.to} 78%)` }}>
                     <div className={cn('relative flex items-center justify-center overflow-hidden p-6', wide ? 'sm:w-[44%]' : 'h-52')}>
                       <div className="absolute h-56 w-56 rounded-full opacity-50 blur-3xl transition-opacity duration-700 group-hover:opacity-90" style={{ background: c.glow }} aria-hidden="true" />
-                      <CourseEmblem slug={c.slug} className={cn('relative h-full max-h-56 w-full text-white transition-transform duration-700 ease-elan', hoverArt[c.slug])} />
+                      <Parallax distance={22} className="relative h-full max-h-56 w-full">
+                        <CourseEmblem slug={c.slug} className={cn('h-full w-full text-white transition-transform duration-700 ease-elan', hoverArt[c.slug])} />
+                      </Parallax>
                     </div>
                     <div className="relative flex flex-1 flex-col gap-4 p-7">
                       <div className="flex flex-wrap items-center gap-2 text-[0.78rem] font-medium">
@@ -169,11 +172,12 @@ export function Journey() {
   const ref = useRef<HTMLOListElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start 75%', 'end 55%'] });
   const fill = useSpring(scrollYProgress, { stiffness: 90, damping: 22 });
+  const halo = useScrub<HTMLDivElement>({ rotate: -25, scale: 0.9 }, { rotate: 35, scale: 1.1 });
   return (
     <section className="section">
       <div className="container-page">
         <div className="on-emerald emerald-panel relative overflow-hidden rounded-[36px] border border-white/10 p-7 md:p-14">
-          <Halo className="pointer-events-none absolute -end-56 -top-40 w-[700px] text-white/10" />
+          <div ref={halo} className="pointer-events-none absolute -end-56 -top-40 w-[700px]"><Halo className="w-full text-white/10" /></div>
           <div className="relative grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
             <div className="lg:sticky lg:top-32 lg:self-start">
               <Heading label={t('label')} title={t('title')} />
@@ -213,7 +217,7 @@ export function Tutor() {
             <div className="glass relative grid items-center gap-10 overflow-hidden rounded-[35px] !bg-bg p-8 md:grid-cols-[1fr_auto] md:p-14">
               <div className="flex flex-col gap-5">
                 <p className="eyebrow">{t('label')}</p>
-                <h2 className="h-section">{t('name')}</h2>
+                <RevealText text={t('name')} className="h-section" />
                 <p className="text-lg font-semibold text-accent">{t('role')}</p>
                 <p className="lead max-w-xl">{t('body')}</p>
                 <ul className="flex flex-wrap gap-2.5">

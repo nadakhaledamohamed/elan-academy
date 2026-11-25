@@ -1,6 +1,6 @@
 # PremiumAcademy.Web — Élan Academy frontend
 
-Next.js (App Router, static export) · TypeScript · Tailwind CSS · Framer Motion · next-intl · next-themes.
+Next.js (App Router, static export) · TypeScript · Tailwind CSS · Framer Motion · GSAP ScrollTrigger · Lenis · next-intl · next-themes.
 
 ## Run
 
@@ -22,6 +22,7 @@ Requires Node 20 or newer. TypeScript is pinned to 5.x because Next.js 15 does n
 | `src/app/globals.css` | Design tokens for both themes, fonts, base type styles |
 | `src/lib/geometry.ts` | Generates all rosette, star and scale artwork as SVG paths |
 | `src/components/geometry` | `Rosette`, `Halo` and `CourseEmblem` (one cover artwork per course) |
+| `src/components/scroll.tsx` | Lenis smooth scrolling, scroll progress bar, GSAP ScrollTrigger scrub and parallax, word-by-word text reveal |
 | `src/components/motion.tsx` | Shared Framer Motion pieces: reveal, stagger, counter, tilt, magnetic |
 | `src/components/home` | Homepage sections |
 | `src/components/layout` | Header, full-screen menu, language and theme switches, footer |
