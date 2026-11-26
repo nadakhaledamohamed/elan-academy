@@ -82,10 +82,10 @@
     ]
   },
   "courses": {
-    "label": "Courses",
+    "label": "Our courses",
     "title": "Five paths, one standard.",
     "view": "Explore course",
-    "all": "All courses",
+    "all": "View all courses",
     "hint": "Choose a book to open it.",
     "items": {
       "foundation": {
@@ -120,7 +120,7 @@
       }
     },
     "open": "Open {name}",
-    "lead": "Five courses, each a volume of its own. Take one from the shelf."
+    "lead": "Five courses, from the first letters to confident recitation, each taught one-to-one and paced to the student."
   },
   "why": {
     "label": "Why Élan",

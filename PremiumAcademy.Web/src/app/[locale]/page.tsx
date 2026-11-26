@@ -2,7 +2,7 @@ import { setRequestLocale } from 'next-intl/server';
 import { Hero } from '@/components/home/Hero';
 import { Marquee, Stats, Why, Journey, Tutor, Testimonials, Faq, Cta } from '@/components/home/Sections';
 import { Pricing } from '@/components/home/Pricing';
-import { Library } from '@/components/home/Library';
+import { CourseCards } from '@/components/home/CourseCards';
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -12,7 +12,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <Hero />
       <Marquee />
       <Stats />
-      <Library />
+      <CourseCards />
       <Why />
       <Journey />
       <Tutor />

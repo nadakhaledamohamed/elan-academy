@@ -24,7 +24,7 @@ Requires Node 20 or newer. TypeScript is pinned to 5.x because Next.js 15 does n
 | `src/components/geometry` | `Rosette`, `Halo` and `CourseEmblem` (one cover artwork per course) |
 | `src/components/scroll.tsx` | Lenis smooth scrolling, scroll progress bar, GSAP ScrollTrigger scrub and parallax, word-by-word text reveal |
 | `src/components/motion.tsx` | Shared Framer Motion pieces: reveal, stagger, counter, tilt, magnetic |
-| `src/components/home` | Homepage sections; `Library.tsx` is the course shelf of 3D books |
+| `src/components/home` | Homepage sections; `CourseCards.tsx` is the parchment course section |
 | `src/components/layout` | Header, full-screen menu, language and theme switches, footer |
 | `src/i18n` | Locale routing, request config and locale-aware `Link` |
 
@@ -35,6 +35,7 @@ Next: Courses, About, Our Tutor, Contact, legal pages and the booking flow. Thos
 
 ## Placeholders to replace
 
+- Course pictures in `public/img/courses` are cropped from the owner's mock-up image at low resolution. Replace them with final, licensed images of the same proportions (about 900 × 1100 px).
 - Testimonial cards are labelled empty slots until real feedback is supplied (`testimonials.*`).
 - Tutor name, title, biography and credentials (`tutor.*` in both message files), shown in square brackets.
 - Lesson platform and cancellation policy in the FAQ, shown in square brackets.
