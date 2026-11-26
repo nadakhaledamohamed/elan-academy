@@ -218,8 +218,7 @@
 .course-card:hover, .course-card:focus-visible { transform: translateY(-8px); border-color: rgb(150 108 30 / 0.85); box-shadow: 0 1px 0 #fff inset, 0 34px 60px -28px rgb(90 62 14 / 0.6); }
 .course-card:focus-visible { outline: 3px solid #8a6114; outline-offset: 4px; }
 .course-photo { position: relative; overflow: hidden; border-radius: 12px; aspect-ratio: 449 / 548; background: #e8dcc0; }
-.course-photo img { width: 100%; height: 112%; object-fit: cover; transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1); }
-.course-card:hover .course-photo img { transform: scale(1.06); }
+.course-photo img { width: 100%; height: 100%; object-fit: cover; }
 /* a soft band of light crosses the picture on hover */
 .course-photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 40%, rgb(255 246 220 / 0.35) 50%, transparent 60%); transform: translateX(-120%); transition: transform 1s ease; }
 .course-card:hover .course-photo::after { transform: translateX(120%); }
@@ -231,7 +230,6 @@
 [dir='rtl'] .course-card:hover .course-link svg { transform: scaleX(-1) translateX(5px); }
 .course-link svg { transition: transform 0.4s ease; }
 @media (prefers-reduced-motion: reduce) {
-  .course-card, .course-photo img, .course-photo::after { transition-duration: 0.01ms; }
+  .course-card, .course-photo::after { transition-duration: 0.01ms; }
   .course-card:hover { transform: none; }
-  .course-card:hover .course-photo img { transform: none; }
 }
