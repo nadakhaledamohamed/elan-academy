@@ -35,7 +35,7 @@ Next: Courses, About, Our Tutor, Contact, legal pages and the booking flow. Thos
 
 ## Placeholders to replace
 
-- Course pictures in `public/img/courses` are cropped from the owner's mock-up image at low resolution. Replace them with final, licensed images of the same proportions (about 900 × 1100 px).
+- Course pictures in `src/assets/courses` are cropped from the owner's mock-up image at low resolution. Replace them with final, licensed images of the same proportions (about 900 × 1100 px).
 - Testimonial cards are labelled empty slots until real feedback is supplied (`testimonials.*`).
 - Tutor name, title, biography and credentials (`tutor.*` in both message files), shown in square brackets.
 - Lesson platform and cancellation policy in the FAQ, shown in square brackets.

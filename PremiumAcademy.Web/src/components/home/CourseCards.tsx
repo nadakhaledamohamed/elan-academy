@@ -6,6 +6,7 @@ import { motion, useMotionTemplate, useMotionValue, useReducedMotion, useSpring,
 import { ArrowRight } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
 import { courses, type CourseSlug } from '@/content/site';
+import { coursePhotos } from '@/assets/courses';
 import { circle, star } from '@/lib/geometry';
 import { Halo } from '@/components/geometry/Rosette';
 import { ease } from '@/components/motion';
@@ -28,10 +29,6 @@ const grid: Variants = { hidden: {}, show: { transition: { staggerChildren: 0.14
 const card: Variants = {
   hidden: { opacity: 0, y: 64, scale: 0.96 },
   show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.95, ease, staggerChildren: 0.1, delayChildren: 0.25 } },
-};
-const photo: Variants = {
-  hidden: { clipPath: 'inset(0% 0% 100% 0% round 12px)', scale: 1.12 },
-  show: { clipPath: 'inset(0% 0% 0% 0% round 12px)', scale: 1, transition: { duration: 1.2, ease } },
 };
 const inner: Variants = { hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0, transition: { duration: 0.7, ease } } };
 
@@ -72,10 +69,22 @@ function Card({ slug, name, desc, cta, reduce }: { slug: CourseSlug; name: strin
     <motion.li ref={ref} variants={reduce ? { hidden: { opacity: 0 }, show: { opacity: 1, transition: { duration: 0.6 } } } : card} onPointerMove={onMove} onPointerLeave={reset} style={{ perspective: 1000 }}>
       <motion.div className="h-full" style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }} whileTap={{ scale: 0.985 }}>
         <Link href="/courses" className="course-card group">
-          <motion.div className="course-photo" variants={reduce ? undefined : photo}>
-            <motion.img src={`/img/courses/${slug}.jpg`} alt="" loading="lazy" width={449} height={548} style={{ x: imgX, y: imgY, scale: 1.08 }} />
+          {/* The frame is always visible, so a picture can never be left hidden by an animation that did not run. */}
+          <div className="course-photo">
+            <motion.img
+              src={coursePhotos[slug].src}
+              alt=""
+              width={449}
+              height={548}
+              decoding="async"
+              initial={reduce ? false : { scale: 1.28 }}
+              whileInView={{ scale: 1.08 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 1.5, ease }}
+              style={{ x: imgX, y: imgY }}
+            />
             <motion.span className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" style={{ background: sheen }} aria-hidden="true" />
-          </motion.div>
+          </div>
           <div className="flex flex-1 flex-col gap-3 px-4 pb-5 pt-5">
             <motion.h3 variants={inner} className="serif text-[1.55rem] leading-[1.15] text-[color:var(--lib-title)]">{name}</motion.h3>
             <motion.p variants={inner} className="flex-1 text-[0.95rem] leading-[1.6] text-[color:var(--lib-text)]">{desc}</motion.p>
