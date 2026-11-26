@@ -40,8 +40,8 @@ function Corner({ className }: { className: string }) {
   const draw: Variants = { hidden: { pathLength: 0, opacity: 0 }, show: { pathLength: 1, opacity: 1, transition: { duration: 1.6, ease } } };
   return (
     <motion.svg viewBox="0 0 120 120" fill="none" aria-hidden="true" className={className} initial="hidden" whileInView="show" viewport={view}>
-      <motion.path d="M2 118V2h116" stroke="#b8862b" strokeWidth="1.2" variants={draw} />
-      <motion.path d="M10 70V10h60M10 30h20V10M22 22h16v16H22z" stroke="#b8862b" strokeWidth="1" opacity="0.8" variants={draw} />
+      <motion.path d="M2 118V2h116" stroke="var(--lib-rule)" strokeWidth="1.2" variants={draw} />
+      <motion.path d="M10 70V10h60M10 30h20V10M22 22h16v16H22z" stroke="var(--lib-rule)" strokeWidth="1" opacity="0.8" variants={draw} />
     </motion.svg>
   );
 }
@@ -77,8 +77,8 @@ function Card({ slug, name, desc, cta, reduce }: { slug: CourseSlug; name: strin
             <motion.span className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" style={{ background: sheen }} aria-hidden="true" />
           </motion.div>
           <div className="flex flex-1 flex-col gap-3 px-4 pb-5 pt-5">
-            <motion.h3 variants={inner} className="serif text-[1.55rem] leading-[1.15] text-[#12382c]">{name}</motion.h3>
-            <motion.p variants={inner} className="flex-1 text-[0.95rem] leading-[1.6] text-[#3a4338]">{desc}</motion.p>
+            <motion.h3 variants={inner} className="serif text-[1.55rem] leading-[1.15] text-[color:var(--lib-title)]">{name}</motion.h3>
+            <motion.p variants={inner} className="flex-1 text-[0.95rem] leading-[1.6] text-[color:var(--lib-text)]">{desc}</motion.p>
             <motion.span variants={inner} className="course-link mt-2 self-start text-[0.98rem]">
               {cta}
               <ArrowRight size={16} aria-hidden="true" className="rtl:-scale-x-100" />
@@ -107,23 +107,23 @@ export function CourseCards() {
       <Corner className="pointer-events-none absolute start-5 top-5 hidden h-24 w-24 md:block rtl:-scale-x-100" />
       <Corner className="pointer-events-none absolute bottom-5 start-5 hidden h-24 w-24 -scale-y-100 md:block rtl:-scale-x-100" />
       <div ref={halo} className="pointer-events-none absolute -end-40 -top-44 w-[640px]">
-        <Halo className="w-full text-[#b8862b]/25" />
+        <Halo className="w-full text-[color:var(--lib-rule)] opacity-25" />
       </div>
 
       <div className="container-page relative !max-w-[1320px]">
         <motion.div className="flex max-w-3xl flex-col gap-5" variants={head} initial="hidden" whileInView="show" viewport={view}>
           <div>
-            <motion.p variants={fadeUp} className="text-[0.82rem] font-semibold uppercase tracking-[0.2em] text-[#8a6114]">{t('label')}</motion.p>
-            <motion.span variants={rule} className="mt-3 block h-px w-14 origin-left bg-[#b8862b] rtl:origin-right" aria-hidden="true" />
+            <motion.p variants={fadeUp} className="text-[0.82rem] font-semibold uppercase tracking-[0.2em] text-[color:var(--lib-gold)]">{t('label')}</motion.p>
+            <motion.span variants={rule} className="mt-3 block h-px w-14 origin-left bg-[color:var(--lib-rule)] rtl:origin-right" aria-hidden="true" />
           </div>
-          <motion.h2 variants={headline} aria-label={t('title')} className="serif text-[clamp(2.1rem,4vw,3.4rem)] leading-[1.08] text-[#12382c]">
+          <motion.h2 variants={headline} aria-label={t('title')} className="serif text-[clamp(2.1rem,4vw,3.4rem)] leading-[1.08] text-[color:var(--lib-title)]">
             {words.map((w, i) => (
               <span key={i} aria-hidden="true" className="me-[0.26em] inline-block overflow-hidden pb-[0.14em] align-bottom last:me-0">
                 <motion.span variants={wordUp} className="inline-block">{w}</motion.span>
               </span>
             ))}
           </motion.h2>
-          <motion.p variants={fadeUp} className="max-w-2xl text-[1.08rem] leading-[1.7] text-[#3a4338]">{t('lead')}</motion.p>
+          <motion.p variants={fadeUp} className="max-w-2xl text-[1.08rem] leading-[1.7] text-[color:var(--lib-text)]">{t('lead')}</motion.p>
           <motion.div variants={fadeUp}>
             <Link href="/courses" className="course-link min-h-[44px] text-[1rem] hover:[&::after]:scale-x-100 hover:[&_svg]:translate-x-1">
               {t('all')}
@@ -140,11 +140,11 @@ export function CourseCards() {
 
         {/* Closing rule: the lines grow outward from the seal, which turns into place. */}
         <motion.div className="mt-12 flex items-center gap-5" aria-hidden="true" initial="hidden" whileInView="show" viewport={view} variants={{ hidden: {}, show: { transition: { staggerChildren: 0.15 } } }}>
-          <motion.span className="h-px flex-1 origin-right bg-gradient-to-r from-transparent to-[#b8862b]" variants={rule} />
+          <motion.span className="h-px flex-1 origin-right bg-gradient-to-r from-transparent to-[color:var(--lib-rule)]" variants={rule} />
           <motion.svg viewBox="-20 -20 40 40" fill="none" className="h-9 w-9" variants={{ hidden: { opacity: 0, rotate: -120, scale: 0.4 }, show: { opacity: 1, rotate: 0, scale: 1, transition: { duration: 1.1, ease } } }}>
-            <path d={star(17, 8, 3) + circle(0, 0, 6)} stroke="#b8862b" strokeWidth="1.1" />
+            <path d={star(17, 8, 3) + circle(0, 0, 6)} stroke="var(--lib-rule)" strokeWidth="1.1" />
           </motion.svg>
-          <motion.span className="h-px flex-1 origin-left bg-gradient-to-l from-transparent to-[#b8862b]" variants={rule} />
+          <motion.span className="h-px flex-1 origin-left bg-gradient-to-l from-transparent to-[color:var(--lib-rule)]" variants={rule} />
         </motion.div>
       </div>
     </section>

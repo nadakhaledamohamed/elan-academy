@@ -189,15 +189,19 @@
    The course library: a parchment section with photographed still-life cards.
    It keeps its own warm palette in both themes, like a lit reading room.
 ------------------------------------------------------------------- */
+/* Light theme: a parchment reading room. */
 .library {
-  --ink: 22 39 31;
-  --muted: 78 80 62;
-  --gold: 134 94 16;
-  --gt1: #b8862b; --gt2: #8a6114; --gt3: #b8862b;
-  --line: 134 94 16; --line-a: 0.3;
-  --card: 255 250 238; --card-a: 0.85;
-  --foil: #ecd08a;
-  color: rgb(var(--ink));
+  --lib-title: #12382c;
+  --lib-text: #3a4338;
+  --lib-gold: #8a6114;
+  --lib-rule: #b8862b;
+  --lib-card: linear-gradient(180deg, #fdf9ee, #f8f0dd);
+  --lib-card-line: rgb(150 108 30 / 0.38);
+  --lib-card-line-hover: rgb(150 108 30 / 0.85);
+  --lib-card-shadow: 0 1px 0 #fff inset, 0 18px 40px -24px rgb(90 62 14 / 0.5);
+  --lib-card-shadow-hover: 0 1px 0 #fff inset, 0 34px 60px -28px rgb(90 62 14 / 0.6);
+  --lib-photo: #e8dcc0;
+  color: var(--lib-text);
   background:
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .25 0 0 0 0 .1 0 0 0 .22 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E"),
     radial-gradient(1000px 520px at 50% 0%, rgb(255 250 232 / 0.95), transparent 70%),
@@ -205,24 +209,43 @@
     linear-gradient(180deg, #f4ead2 0%, #ead9b6 100%);
   border-block: 1px solid rgb(134 94 16 / 0.28);
 }
+/* Dark theme: the same room at night, so the page keeps one mood from top to bottom. */
+[data-theme='dark'] .library {
+  --lib-title: #f4ecd6;
+  --lib-text: #a9b8af;
+  --lib-gold: #e6bd66;
+  --lib-rule: #c9a04a;
+  --lib-card: linear-gradient(180deg, rgb(255 255 255 / 0.075), rgb(255 255 255 / 0.025));
+  --lib-card-line: rgb(230 189 102 / 0.26);
+  --lib-card-line-hover: rgb(230 189 102 / 0.8);
+  --lib-card-shadow: 0 1px 0 rgb(255 255 255 / 0.08) inset, 0 24px 50px -26px rgb(0 0 0 / 0.8);
+  --lib-card-shadow-hover: 0 1px 0 rgb(255 255 255 / 0.1) inset, 0 40px 70px -28px rgb(0 0 0 / 0.9), 0 0 40px -12px rgb(230 189 102 / 0.35);
+  --lib-photo: #0c241c;
+  background:
+    radial-gradient(1000px 520px at 50% 0%, rgb(18 110 84 / 0.28), transparent 70%),
+    radial-gradient(800px 520px at 100% 100%, rgb(217 169 63 / 0.1), transparent 65%),
+    linear-gradient(180deg, #06140f 0%, #071c15 100%);
+  border-block: 1px solid rgb(230 189 102 / 0.16);
+}
 .library { position: relative; overflow: hidden; }
 .library .serif { font-family: 'EB Garamond', 'Alexandria', Georgia, serif; font-weight: 500; letter-spacing: -0.01em; }
 [lang='ar'] .library .serif { font-family: 'Alexandria', sans-serif; font-weight: 700; }
 .course-card {
   display: flex; flex-direction: column; height: 100%;
-  background: linear-gradient(180deg, #fdf9ee, #f8f0dd);
-  border: 1px solid rgb(150 108 30 / 0.38); border-radius: 18px; padding: 8px;
-  box-shadow: 0 1px 0 #fff inset, 0 18px 40px -24px rgb(90 62 14 / 0.5);
+  background: var(--lib-card);
+  border: 1px solid var(--lib-card-line); border-radius: 18px; padding: 8px;
+  box-shadow: var(--lib-card-shadow);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
   transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease, border-color 0.4s ease;
 }
-.course-card:hover, .course-card:focus-visible { transform: translateY(-8px); border-color: rgb(150 108 30 / 0.85); box-shadow: 0 1px 0 #fff inset, 0 34px 60px -28px rgb(90 62 14 / 0.6); }
-.course-card:focus-visible { outline: 3px solid #8a6114; outline-offset: 4px; }
-.course-photo { position: relative; overflow: hidden; border-radius: 12px; aspect-ratio: 449 / 548; background: #e8dcc0; }
+.course-card:hover, .course-card:focus-visible { transform: translateY(-8px); border-color: var(--lib-card-line-hover); box-shadow: var(--lib-card-shadow-hover); }
+.course-card:focus-visible { outline: 3px solid var(--lib-gold); outline-offset: 4px; }
+.course-photo { position: relative; overflow: hidden; border-radius: 12px; aspect-ratio: 449 / 548; background: var(--lib-photo); }
 .course-photo img { width: 100%; height: 100%; object-fit: cover; }
 /* a soft band of light crosses the picture on hover */
 .course-photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 40%, rgb(255 246 220 / 0.35) 50%, transparent 60%); transform: translateX(-120%); transition: transform 1s ease; }
 .course-card:hover .course-photo::after { transform: translateX(120%); }
-.course-link { position: relative; display: inline-flex; align-items: center; gap: 8px; color: #8a6114; font-weight: 600; }
+.course-link { position: relative; display: inline-flex; align-items: center; gap: 8px; color: var(--lib-gold); font-weight: 600; }
 .course-link::after { content: ''; position: absolute; inset-inline: 0; bottom: -4px; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
 [dir='rtl'] .course-link::after { transform-origin: right; }
 .course-card:hover .course-link::after, .course-card:focus-visible .course-link::after { transform: scaleX(1); }
